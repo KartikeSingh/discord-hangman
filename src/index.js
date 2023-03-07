@@ -41,8 +41,6 @@ module.exports = class Hangman {
                 word = _word || this.words[Math.floor(Math.random() * this.words.length)],
                 used = [];
 
-            console.log(word);
-
             const msg = await interaction[this.options.replyType === 0 ? "reply" : this.options.replyType === 1 ? "editReply" : "followUp"]({
                 ephemeral: this.ephemeral,
                 files: [at],

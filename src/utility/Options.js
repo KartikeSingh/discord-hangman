@@ -1,5 +1,5 @@
 module.exports = class Options {
-    /**
+ /**
    * The Hangman game options
    * @param {Object} options The options for the game
    * @param {Number} options.autoDelete Time after which auto delete useless bot messages. less than 0, to not delete
