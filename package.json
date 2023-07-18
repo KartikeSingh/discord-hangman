@@ -1,6 +1,6 @@
 {
   "name": "discord-hangman-game",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The hangman game on discord with images",
   "main": "src/index.js",
   "scripts": {

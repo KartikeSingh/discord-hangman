@@ -1,4 +1,4 @@
-const { AttachmentBuilder, MessageCollector } = require('discord.js');
+const { AttachmentBuilder, MessageCollector, EmbedBuilder } = require('discord.js');
 
 const createHangman = require("./utility/createHangman");
 const Options = require("./utility/Options");
@@ -44,14 +44,13 @@ module.exports = class Hangman {
             const msg = await interaction[this.options.replyType === 0 ? "reply" : this.options.replyType === 1 ? "editReply" : "followUp"]({
                 ephemeral: this.ephemeral,
                 files: [at],
-                embeds: [{
-                    title: this.options.homeTitle,
-                    image: {
-                        url: "attachment://game.png"
-                    },
-                    color: "BLUE",
-                    description: this.options.homeDescription.replace(/\{word\}/gi, word.split("").map(v => used.includes(v) ? v.toUpperCase() : "_").join(" "))
-                }],
+                embeds: [
+                    new EmbedBuilder()
+                        .setColor("Blue")
+                        .setDescription(this.options.homeDescription.replace(/\{word\}/gi, word.split("").map(v => used.includes(v) ? v.toUpperCase() : "_").join(" ")))
+                        .setImage("attachment://game.png")
+                        .setTitle(this.options.homeTitle)
+                ],
                 fetchReply: true
             });
 
@@ -87,14 +86,12 @@ module.exports = class Hangman {
                 await interaction[interaction.editReply ? "editReply" : "edit"]({
                     attachments: [],
                     files: [at],
-                    embeds: [{
-                        color: wrongs === 6 ? "#ff0000" : done ? "GREEN" : "RANDOM",
-                        title: this.options.homeTitle,
-                        image: {
-                            url: "attachment://game.png"
-                        },
-                        description
-                    }]
+                    embeds: [new EmbedBuilder()
+                        .setColor(wrongs === 6 ? "#ff0000" : done ? "GREEN" : "RANDOM")
+                        .setTitle(this.options.homeTitle)
+                        .setImage("attachment://game.png")
+                        .setDescription(description)
+                    ]
                 });
 
                 if (wrongs === 6 || done) col.stop(done);
