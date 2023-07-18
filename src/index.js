@@ -87,7 +87,7 @@ module.exports = class Hangman {
                     attachments: [],
                     files: [at],
                     embeds: [new EmbedBuilder()
-                        .setColor(wrongs === 6 ? "#ff0000" : done ? "GREEN" : "RANDOM")
+                        .setColor(wrongs === 6 ? "#ff0000" : done ? "Green" : "Random")
                         .setTitle(this.options.homeTitle)
                         .setImage("attachment://game.png")
                         .setDescription(description)
